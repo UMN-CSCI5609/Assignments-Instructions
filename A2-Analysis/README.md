@@ -27,7 +27,7 @@ As usually, we have created some template code for you to start working with.
 Answer the following questions in your PDF report:
 - Why do we use opacity = 0.5 for points in the scatter plot? What would happen if the default transparency of all points were set to 1?
 - In the current implementation, all attributes can be bound with the three visual channels, leading to inappropriate encodings (e.g., using the x-axis for the title of 895 movies). Which attribute should be removed from the dropdown list for each channel?
-- I use the line chart for the year distribution to showcase how to implement the path generator. But is the line chart the best choice for this use case? 
+- I use the line chart for the year distribution to showcase how to implement the path generator. But is the line chart the best choice for this use case? Anything wrong with using the basic curve?
 
 
 ### 3. Conduct Exploratory Datate Analysis (EDA) (4 points)
