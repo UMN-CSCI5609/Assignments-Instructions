@@ -94,7 +94,7 @@
 </script>
 
 <svg {width} {height} class="line">
-  <!-- tip2: add the line here, the circiles can help validate your curve -->
+  <!-- tip2: add the line here, the circles can help validate your curve -->
   <!-- <path d={path} fill=xx stroke=xx stroke-width="1" /> -->
   <!-- <g class="points">
         {#each data as point (point.x)}
