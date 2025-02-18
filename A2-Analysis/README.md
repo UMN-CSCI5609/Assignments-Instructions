@@ -1,8 +1,8 @@
 ## Your Tasks in A2:
 
-### 1. Create a Data Dashboard (3 points)
+### 1. Create a Multi-View Visualization (3 points)
 
-We will create a data dashboard similar to this [demo](https://qianwen.info/my-vis-5609/A2).
+We will create a multi-view visualization similar to this [demo](https://qianwen.info/my-vis-5609/A2).
 As usually, we have created some template code for you to start working with.
 
 - Add the `Line.svelte` and `Scatter.svelte` into `src/lib` folder. Add the lines below to `src/lib/index.ts`
@@ -27,15 +27,15 @@ As usually, we have created some template code for you to start working with.
 Answer the following questions in your PDF report:
 - Why do we use opacity = 0.5 for points in the scatter plot? What would happen if the default transparency of all points were set to 1?
 - In the current implementation, all attributes can be bound with the three visual channels, leading to inappropriate encodings (e.g., using the x-axis for the title of 895 movies). Which attribute should be removed from the dropdown list for each channel?
-- I use the line chart for the year distribution to showcase how to implement the path generator. But is the line chart the best choice for this use case? Anything wrong with using the basic curve?
+- I use the line chart for the year distribution to showcase how to implement the path generator. But is using curve the best choice here? Anything wrong with using the basic curve?
 
 
 ### 3. Conduct Exploratory Datate Analysis (EDA) (4 points)
-Using the data dashboard, we will conduct an exploratory analysis to explore *"Which factors influence the ratings of summer movies?"*
+Using the implemented multi-view visualization, we will conduct an exploratory analysis to explore *"Which factors influence the ratings of summer movies?"*
 
 - First, please list three potential factors that might influence the rating of summer movies based on your prior knowledge or intuition. 
 - Then, use the dashboard to investigate the influence of the three proposed factors.
-- If all the three factors do no influence the rating, please consider new ones. At least one of your proposed factors should influence/correlate with the movie rating.
+- You can either use only the visualizations from step 1 or implement your own additional visualizations for the analysis.
 
 ### 4. Submission
 Please submit your work as a single PDF on Canvas with the following:
