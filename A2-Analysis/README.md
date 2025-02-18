@@ -34,7 +34,8 @@ Answer the following questions in your PDF report:
 Using the implemented multi-view visualization, we will conduct an exploratory analysis to explore *"Which factors influence the ratings of summer movies?"*
 
 - First, please list three potential factors that might influence the rating of summer movies based on your prior knowledge or intuition. 
-- Then, use the dashboard to investigate the influence of the three proposed factors.
+- Then, use the multi-view visualization to investigate the influence of the three proposed factors.
+- At least one of your proposed factors should influence/correlate with the movie rating. If all the three factors do no influence the rating, please consider new ones.
 - You can either use only the visualizations from step 1 or implement your own additional visualizations for the analysis.
 
 ### 4. Submission
