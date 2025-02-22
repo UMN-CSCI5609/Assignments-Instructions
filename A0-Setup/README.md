@@ -31,13 +31,11 @@
 
    * SvelteKit provides an easy way to start a Svelte Project.
 In your terminal, find a location you like to save the project, and run `npx sv create FOLDERNAME` 
-(You can name it whatever you prefer, but we will assume `my-vis-5609` as the folder name for following demonstration)
-
-      ℹ️ **Note:** This folder `FOLDERNAME` will be used for all assignments in this course. You can name it whatever you prefer.
+(You can name it whatever you prefer, but we will assume `my-vis-5609` as the folder name for following demonstration).
    
         <img width="500" alt="image" src="https://github.com/user-attachments/assets/6403d66a-8eef-4c5a-b7da-0fc97bcc2c35">
 
-   - Open the `my-vis-5609` folder in VSCode.
+   - Open the `my-vis-5609` folder in VSCode. 
    - Open the terminal by selecting `View > Terminal` from the menu bar.
 
    - Run `npm run dev -- --open` in the terminal. The website will be open in `http://localhost:5173/`. Whenever you change the code, the website will be updated automatically.
@@ -56,13 +54,16 @@ In your terminal, find a location you like to save the project, and run `npx sv 
 
 ## 3. Publish to Github Page
 
-- **Create A Github Repository** 
-    - Sign into VSCode with your GitHub account in the Accounts menu, located in the lower right of the Activity bar.  
-      <img width="150" alt="image" src="https://github.com/user-attachments/assets/7963cb4c-6457-4cbf-8ee8-049caffa2d8e"/>
+- **Create A Github Repository**
+  - The folder created by svelte kit, **my-vis-5609**, will be your GitHub repo. Please DO NOT make nested folders, which will make your deployment complicated.  
+    ![image](https://github.com/user-attachments/assets/1cbcf300-cca2-4013-98b2-0677cfd8f0aa)
 
-   - You can then use the source control feature in VSCode to initialize your repo, publish the repo to github, and commit and push changes. Ensure that your github repo is private.     
-      <img width="150" alt="image" src="https://github.com/user-attachments/assets/77b28a2a-3cb9-42db-97fc-a3c8e6a8e9c7">
-      <img width="150" alt="image" src="https://github.com/user-attachments/assets/21d96b06-250e-44af-906e-75e676a17bb7">
+  - Sign into VSCode with your GitHub account in the Accounts menu, located in the lower right of the Activity bar.  
+      <img width="250" alt="image" src="https://github.com/user-attachments/assets/7963cb4c-6457-4cbf-8ee8-049caffa2d8e"/>
+
+  - You can then use the source control feature in VSCode to initialize your repo, publish the repo to github, and commit and push changes. Ensure that your github repo is private.     
+      <img width="250" alt="image" src="https://github.com/user-attachments/assets/77b28a2a-3cb9-42db-97fc-a3c8e6a8e9c7">
+      <img width="250" alt="image" src="https://github.com/user-attachments/assets/21d96b06-250e-44af-906e-75e676a17bb7">
 
 - **Deploy Your Website to Github Page**
    
