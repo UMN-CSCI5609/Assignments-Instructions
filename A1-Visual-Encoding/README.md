@@ -62,7 +62,7 @@ For **each** of the following questions, sketch at least three different visuali
 Please explore diverse visual encodings for each question. 
 Explain each of your sketches (data attributes, marks, and visual channels), compare the three sketches and decide one design that is better than the others in effectively addressing the question.
 
-- Q1: How do the top three movie genres (by number of movies) change over time?
+- Q1: How do the annual top three movie genres (by number of movies) change over time?
 - Q2: Are there any correlations between different genres? For example, which genre often co-occurs with comedy in a movie?
 
 ### 4. Implement Your Visualizations
