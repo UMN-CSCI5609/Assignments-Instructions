@@ -3,6 +3,9 @@ We will continue using the project folder from A0.
 Please move the `src/routes/+page.svelte` you created in A0 into `src/routes/A0/+page.svelte`, which can be now accessed via `http://localhost:5173/A0`. 
 Similarly, we will create `src/routes/A1/+page.svelte` for this assignment.
 
+![image](https://github.com/user-attachments/assets/f3b9d631-fc92-440f-8df4-c38f38f4ddf0)
+
+
 We will need to install d3 for this assignment. Run
 ```
 npm i -S d3
