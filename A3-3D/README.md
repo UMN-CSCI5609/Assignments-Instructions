@@ -19,6 +19,7 @@ In the current 3D demo, dummy data is used for visualization.
 Please replace this dummy data with real data from the summer movie dataset.
 
 Use async/await to load the data before initializing the 3D scene, ensuring that the scene is populated correctly with the relevant information.
+Modify the camera, text, or bar positions to ensure there is no visual occlusion.
 
 ### 3. Reflect on the Cons and Pros of 3D Visualization (6 points)
 
