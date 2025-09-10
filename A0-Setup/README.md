@@ -10,16 +10,17 @@
    - This class assumes you have basic knowledge of web development. However, here's an optional quick refresher to jog your memory.  
       <img width="500" alt="image" src="https://github.com/user-attachments/assets/c39cfa55-87fe-441f-bcf1-d65ff90c9f74">
 
-   - In your VSCode, create an `index.html` file as the one shown above.
+   - In your VSCode, find the `index.html` file.
 
    - Open it in your chrome browser and you will see a webpage like below. Press the button will change the shwoing number of clicks.  
       <img width="150" alt="image" src="https://github.com/user-attachments/assets/ddbc6d63-04c8-4a68-8845-882e99698c98">
 
    - **Modify the webpage to refresh your memory**
-     -  [modify the style] change the background color of the button to `#44aa66`, modify the button font size to  `font-size: xx-large`
+     - [modify the style] change the background color of the button to `#44aa66`, modify the button font size to  `font-size: xx-large`
      - [modify the webpage content] as shown below
      - [modify the function] Display the remaining number of clicks. After 5 clicks, show an alert: "No more clicks remaining!".
       <img width="150" alt="image" src="https://github.com/user-attachments/assets/cdac5565-8026-4e8c-98c2-ab4a16850773">
+     - [add a button] Add one more button that decreases the counter when clicked.
 
 
 ## 2. Svelte
