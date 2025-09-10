@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* compiled from css file */
+      button {
+        background-color: blue;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    </style>
+    <script>
+      // compiled from javascript file
+      var cnt = 0;
+      function onClick() {
+        cnt += 1;
+        document.getElementById("clicks").innerHTML = cnt;
+        document.getElementById("clickButton").innerHTML = "Click me " + cnt + " times";
+      }
+    </script>
+  </head>
+  <body>
+    <button id="clickButton" type="button" onClick="onClick()">Click me</button>
+    <p>Number of Clicks: <a id="clicks">0</a></p>
+  </body>
+</html>
