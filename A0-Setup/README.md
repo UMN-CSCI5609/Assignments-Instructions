@@ -10,7 +10,8 @@
    - This class assumes you have basic knowledge of web development. However, here's an optional quick refresher to jog your memory.  
       <img width="500" alt="image" src="https://github.com/user-attachments/assets/c39cfa55-87fe-441f-bcf1-d65ff90c9f74">
 
-   - In your VSCode, find the `index.html` file.
+   - Create an empty folder and name it as CSCI5609-W22. Open it using your VSCode.
+   - In your VSCode, create an `index.html` file. Copy and paste the content from this `Assignments-Instructions/A0-Setup/index.html` to your own `index.html` file.
 
    - Open it in your chrome browser and you will see a webpage like below. Press the button will change the shwoing number of clicks.  
       <img width="150" alt="image" src="https://github.com/user-attachments/assets/ddbc6d63-04c8-4a68-8845-882e99698c98">
