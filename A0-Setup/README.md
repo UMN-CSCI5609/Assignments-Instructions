@@ -89,7 +89,7 @@ In your terminal, find a location you like to save the project, and run `npx sv 
 ## 4. Submission
 Please submit the URLs of a) your public github page and b) private github repo in Canvas.
 
-Ensure that you have added the [instructor](https://github.com/wangqianwen0418) and [TA](https://github.com/DanhuaZhang) to your private github repo so that we can access your source code, though most of the time, the grading does not depends on the source code.
+Ensure that you have added the [instructor](https://github.com/chenzhutian) and [TA](https://github.com/ppphhhleo) to your private github repo so that we can access your source code, though most of the time, the grading does not depends on the source code.
 You will work on the same repo for the remainder of the semester.
 
 **Grading:**
