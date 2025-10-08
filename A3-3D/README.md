@@ -1,4 +1,4 @@
-## Your Tasks in A3
+## Your Tasks in A4
 
 ### 1. Download and Run the Code** (1 point)
 
@@ -9,7 +9,7 @@
    ```
 - Put the provided `3d` folder into your `static` folder. This folder contains 3D models and texture images we will use in this assignment.
 - Put `Helper-3D.ts` into `src/lib/` folder
-- As always, copy and paste the content of `A3.svelte` into your `src/routes/A3/+page.svelte` file.
+- As always, copy and paste the content of `A4.svelte` into your `src/routes/A4/+page.svelte` file.
 
 With `npm run dev`, you should see a 3D demo in `http://localhost:5173/A2`.
 
