@@ -1,10 +1,10 @@
-# A4: Scrollytelling
+# A3: Scrollytelling
 
 ## Your Tasks
 For your final assignment, no more *'fill-in-the-blank'* to replicate the demo. Instead, you’ll work with the same code from the demo to learn how the scrolly effect is programmed and make required modifications as bleow. (Of course, we’ll provide detailed explanations about the scrolly component).
 
 0. **Download and run the code**
-- Simply add the A4 folder provided here into your `src/routes` folder
+- Simply add the A3 folder provided here into your `src/routes` folder
 - Add `Scroll.svelte` into `src/lib` folder. Add lines below to `src/lib/index.ts`
   ``` 
   import Scroll from './Scroll.svelte'
@@ -12,7 +12,7 @@ For your final assignment, no more *'fill-in-the-blank'* to replicate the demo. 
   ``` 
   
 
-  You will see a scrollytelling at `http://localhost:5173/A4`.
+  You will see a scrollytelling at `http://localhost:5173/A3`.
 
 1. **Improve the 2D bar chart** 
    While it is fun to observe the changes of genre distribution year by year, it violates the "eyes beat memory" guide: it is hard to anwser the questions such as how has the genre distribution changed compared with 10 years ago. 
@@ -61,7 +61,7 @@ For your final assignment, no more *'fill-in-the-blank'* to replicate the demo. 
    `myProgress` is a number between [0,100], binded with the scroll elements to indicate the progress of the scrolling.
 
    You can then pass  `myProgress`  to your visualization components to control it.
-   For example, in `src/routes/A4/Scrolly2D.svelte`, we pass it to the `Bar` component to control the year range of the genre distribution.
+   For example, in `src/routes/A3/Scrolly2D.svelte`, we pass it to the `Bar` component to control the year range of the genre distribution.
 
    ```svelte
       <Scroll bind:progress={myProgress} >
@@ -75,7 +75,7 @@ For your final assignment, no more *'fill-in-the-blank'* to replicate the demo. 
    </Scroll>
    ```
 2. **No Text Scrolly Scrolly**
-   In `src/routes/A4/StoryOpen.svelte`, we use a non-text scrolly element by using an empty div element whose height is larger than the view height and making the story width as 0.
+   In `src/routes/A3/StoryOpen.svelte`, we use a non-text scrolly element by using an empty div element whose height is larger than the view height and making the story width as 0.
 
    ```svelte
    <script>
