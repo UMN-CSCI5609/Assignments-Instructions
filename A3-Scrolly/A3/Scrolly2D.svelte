@@ -104,6 +104,7 @@
   <!-- visualization here, indicated by slot='viz' -->
   <div slot="viz">
     <Bar {movies} progress={myProgress} height={barChaertHeight} width={600} />
+    <!-- Tips 4: add your RankBar component here -->
   </div>
 </Scroll>
 

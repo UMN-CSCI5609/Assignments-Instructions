@@ -4,7 +4,6 @@
   import type { TMovie } from "../../types";
   import StoryOpen from "./StoryOpen.svelte";
   import Scrolly2D from "./Scrolly2D.svelte";
-  import Scrolly3D from "./Scrolly3D.svelte";
 
   let movies: TMovie[] = [];
 
@@ -39,7 +38,6 @@
 <div class="container">
   <StoryOpen movieNum={movies.length} />
   <Scrolly2D {movies} />
-  <Scrolly3D />
 </div>
 
 <style>

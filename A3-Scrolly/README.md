@@ -1,7 +1,7 @@
 # A3: Scrollytelling
 
 ## Your Tasks
-For your final assignment, no more *'fill-in-the-blank'* to replicate the demo. Instead, you’ll work with the same code from the demo to learn how the scrolly effect is programmed and make required modifications as bleow. (Of course, we’ll provide detailed explanations about the scrolly component).
+For assignment 3, no more *'fill-in-the-blank'* to replicate the demo. Instead, you’ll work with the same code from the demo to learn how the scrolly effect is programmed and make required modifications as bleow. (Of course, we’ll provide detailed explanations about the scrolly component).
 
 0. **Download and run the code**
 - Simply add the A3 folder provided here into your `src/routes` folder
@@ -10,7 +10,11 @@ For your final assignment, no more *'fill-in-the-blank'* to replicate the demo. 
   import Scroll from './Scroll.svelte'
   export {Scroll}
   ``` 
-  
+- Add `RankBar.svelte` into `src/lib` folder. Add lines below to `src/lib/index.ts`
+```
+  import RankBar from './RankBar.svelte'
+  export { RankBar }
+```
 
   You will see a scrollytelling at `http://localhost:5173/A3`.
 
@@ -21,20 +25,15 @@ For your final assignment, no more *'fill-in-the-blank'* to replicate the demo. 
    - Modify the chart so that it can effectively track and compare changes in genre distribution over time, enabling users to answer such comparison questions **(2 points)**. Consider reuse your implementation from A1.
    - Ensure that the chart updates dynamically with animated transitions as the left-side context scrolls **(2 points)**.
 
-2. **Create a custom 3D visualization**
-   The demo demonstrates how to use scrolly to control a 3D scene with Flamingo models.
-   Now, it’s your turn to get creative and eevelop your own 3D scrollytelling experience, you can use/modify the 3D scene you built in A3 or even build new ones.
-   Your 3D scrollytelling should:
-   - A 3D scene is created that includes both data-related elements (e.g., bars) and non-data-related objects (e.g., animal models) **(1 points)**
-   - The 3D scene updates smoothly and accurately in response to the scrolling **(3 points)**
-   - The narration is clear and effectively introduces and explains the changes in the 3D scene as the user scrolls **(2 points)**
+2. **Create an animated RankBar visualization**
+  Now, let's develop an animated RankBar visualization similar to the Go ranking visualization we saw in the class. You will find an incomplete animated RankBar in the `src/lib` folder. You will need to edit the code to add transition when the ranks changes.
+  You animated bars should:
+  - Dynamically update their rankings in sync with the 2D bar chart as the user scrolls the page **(1 points)**
+  - Smoothly transition their positions when the rankings change **(3 points)**
+  - Animate existing bars first, and only then transit in new bars **(2 points)**
 
-   Here are some examples to inspire you:
-
-   - Introduce each element in the 3D scene. Use the left side to display textual explanations and the right side to add corresponding 3D elements dynamically.
-   - Incorporate 3D bars into the scene one by one, narratively explaining each genre in detail as they appear.
-  
-    Feel free to innovate and explore unique ways to combine storytelling with 3D visuals!
+  You can try different animation effects in addition to fade in/out we taught in the class.  
+  Feel free to innovate and explore unique ways to combine animations with the 2 bar charts!
 
 3. **Submission**
    Please submit the URLs of a) your publicly accessible webpage and b) your private GitHub repository via Canvas. 
