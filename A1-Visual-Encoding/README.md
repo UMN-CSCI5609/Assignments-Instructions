@@ -61,17 +61,21 @@ If the data is properly formated, run `npm run dev`, open `http://localhost:5173
 
 
 ### 3. Sketch Visual Designs
-For **each** of the following questions, sketch at least three different visualizations. 
+
+> [!TIP]
+> If you’re stuck on visual design ideas, [the Data Visualisation Catalogue](https://datavizcatalogue.com/) and [the D3 Gallery](https://observablehq.com/@d3/gallery) is a great place to find inspiration.
+
+For **each** of the following questions, sketch at least **THREE** different visualizations. 
 Please explore diverse visual encodings for each question. 
 Explain each of your sketches (data attributes, marks, and visual channels), compare the three sketches and decide one design that is better than the others in effectively addressing the question.
 
-- Q1: How do the annual top 3 genres change over time? Note: the annual top 3 genres are based on the number of movies released that year.
+- Q1: How do the annual top 3 genres change over time? For example, which genre is always within the top3? Note: the annual top 3 genres are based on the number of movies released that year.
 - Q2: What are the correlations between different genres? For example, which genre often co-occurs with comedy in a movie?
 
 ### 4. Implement Your Visualizations
 
 Finally, implement the chosen design for each question and publish them in your Github Page. 
-Answer the two questions using your visualizations.
+Then answer the two questions using your visualizations.
 
 ### 5. Submission
 In Canvas, please submit a PDF report, including 
