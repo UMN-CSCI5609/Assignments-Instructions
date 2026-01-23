@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Please apply for [Github student education benefits](https://education.github.com/discount_requests/application) **ASAP**. If your benefits are not approved by A0 deadline, please make your repository public temporarily until your application is approved.
+
 ## 0. Preparation
 - Ensure you have a code IDE like [VSCode](https://code.visualstudio.com/download) installed. While you are welcome to use any IDE of your choice, this course will assume the use of VSCode for demonstrations.
 - [Install npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) on your machine.
@@ -93,9 +96,13 @@ Ensure that you have added the [TA](https://github.com/ppphhhleo) to your privat
 You will work on the same repo for the remainder of the semester.
 
 **Grading:**
+> [!IMPORTANT]
+> Every assignment must include two links:
+> * Github Pages link (e.g., https://umn-csci5609.github.io/my-vis-5609/),
+> * Github repository link (e.g., https://github.com/UMN-CSCI5609/my-vis-5609)
 
 - [1 pt] Publicly accessible URL to your Github Page
-- [1 pt] Private github repo where the instructor and the TA has been invited to
+- [1 pt] Private github repo where the TA has been invited to
 - [3 pts] Functionable Demo:
    - All DOMs are present (images, text, button) (1 pt)
    - The text updates correctly with each button click (1 pt)
