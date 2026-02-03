@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> Please apply for [Github student education benefits](https://education.github.com/discount_requests/application) **ASAP**. If your benefits are not approved by A0 deadline, please make your repository public temporarily until your application is approved.
+> Please apply for [Github student education benefits](https://github.com/settings/education/benefits) **ASAP**. If your benefits are not approved by A0 deadline, please make your repository public temporarily until your application is approved.
 
 ## 0. Preparation
 - Ensure you have a code IDE like [VSCode](https://code.visualstudio.com/download) installed. While you are welcome to use any IDE of your choice, this course will assume the use of VSCode for demonstrations.
