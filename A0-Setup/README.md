@@ -1,6 +1,10 @@
 > [!IMPORTANT]
 > Please apply for [Github student education benefits](https://github.com/settings/education/benefits) **ASAP**. If your benefits are not approved by A0 deadline, please make your repository public temporarily until your application is approved.
 
+
+> [!NOTE]
+> All assignments can be hosted in a **single repository**, each accessible through a different route. You will not need to create multiple repositories for assignments.
+
 ## 0. Preparation
 - Ensure you have a code IDE like [VSCode](https://code.visualstudio.com/download) installed. While you are welcome to use any IDE of your choice, this course will assume the use of VSCode for demonstrations.
 - [Install npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) on your machine.
