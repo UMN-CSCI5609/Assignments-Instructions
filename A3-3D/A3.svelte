@@ -238,15 +238,16 @@
         renderer.setAnimationLoop(animate);
     }
 
-    // === TODO-3: Stacked Bars ===
+    // === TODO-3: Unit Visualization ===
     // Currently createBars() renders one colored bar per genre per year.
     //
     // TODO-3a: Define a unique 3D shape per genre (e.g. createGenreGeometry / createGenreMaterial).
     //   Docs: https://threejs.org/docs/#api/en/geometries
     //   Docs: https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
     //
-    // TODO-3b: Replace createBars() with createStackedBars().
-    //   Stack one 3D object per individual movie (e.g. Comedy=5 → 5 separate objects).
+    // TODO-3b: Replace createBars() with a unit visualization.
+    //   Instead of one tall bar per genre, represent each individual movie as its own 3D object,
+    //   stacked vertically (e.g. Comedy=5 → 5 separate objects).
     //   Example:
     //     stackData.forEach((row) => {
     //         let currentY = FLOOR;
