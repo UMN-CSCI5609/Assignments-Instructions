@@ -3,43 +3,69 @@
     import * as THREE from "three";
     import { FontLoader, Font } from "three/addons/loaders/FontLoader.js";
     import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-    import { FirstPersonControls } from "three/addons/controls/FirstPersonControls.js";
-
+    import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+    import type { TMovie } from "../../types";
     import { addGround, onWindowResize, loadModels } from "$lib/Helper-3D";
 
     import * as d3 from "d3";
 
-    // tip: change the dummy data to the actual summer movies data
-    type TDummyData = {
-        [key: string]: number;
+    let movies: TMovie[] = $state([]);
+
+    // Stacked data: each year has counts per genre
+    type TStackRow = {
+        year: string;
+        Comedy: number;
+        Romance: number;
+        Drama: number;
     };
-    const dummyData = {
-        comedy: 20,
-        romance: 15,
-        drama: 40,
+
+    let stackData: TStackRow[] = $state([]);
+    const genres = ["Comedy", "Romance", "Drama"];
+    const genreColors: Record<string, number> = {
+        Comedy: 0xf4a261,  // warm orange
+        Romance: 0xe76f51,  // coral red
+        Drama: 0x2a9d8f,   // teal
     };
 
-    // global variables for defining and controlling the 3D scene
-    let container: HTMLElement; // The container element where the Three.js canvas will be added to the DOM
-    // let controls: any; // Controls for interacting with the scene (e.g., camera controls like OrbitControls or PointerLockControls)
-    let camera: THREE.PerspectiveCamera; // The camera used to view the scene, typically a perspective camera for 3D rendering
-    let scene: THREE.Scene; // The scene where all the objects are added
-    let renderer: THREE.WebGLRenderer; // The renderer used to render the scene
-    const FLOOR = -250; // The floor level of the scene
+    // === TODO-1: Load Data ===
+    // Currently using hardcoded dummy data.
+    // TODO: Load the summer_movies.csv, then aggregate
+    //   the real movie data into stackData.
+    //   - Group movies by year (movie.year.getFullYear())
+    //   - Count how many movies belong to each genre (Comedy, Romance, Drama)
+    //   - Build a TStackRow[] array sorted by year
+    async function loadCsv() {
+        stackData = [
+            { year: "2000", Comedy: 5, Romance: 3, Drama: 8 },
+            { year: "2005", Comedy: 7, Romance: 4, Drama: 6 },
+            { year: "2010", Comedy: 3, Romance: 6, Drama: 10 },
+        ];
+        console.log("Stack data:", stackData);
+    }
+    // === END TODO-1 ===
 
-    const morphs: Array<THREE.Mesh> = []; // Array to store the morphs (animated models: horse, flamingo, parrot)
-    let mixer: THREE.AnimationMixer; // The mixer used to animate the morphs
+    let container: HTMLElement;
+    let camera: THREE.PerspectiveCamera;
+    let scene: THREE.Scene;
+    let renderer: THREE.WebGLRenderer;
+    const FLOOR = -250;
 
-    const clock = new THREE.Clock(); // Clock to keep track of time for animations
+    const morphs: Array<THREE.Mesh> = [];
+    let mixer: THREE.AnimationMixer;
+    const clock = new THREE.Clock();
 
-    onMount(
-        // // once the component mounts, initialize the Three.js scene
-        () => {
-            // tip: when using real data to create the bars, you want to make sure the data is loaded before creating the bars.
-            // use async/await to load the data before initializing the scene
-            init(window.innerWidth, window.innerHeight);
-        },
-    );
+    const horseMorphs: Array<THREE.Mesh> = [];
+    let horseMixer: THREE.AnimationMixer;
+    const ORBIT_RX = 850;
+    const ORBIT_RZ = 400;
+
+
+    let animating = $state(false);
+
+    onMount(async () => {
+        await loadCsv();
+        init(window.innerWidth, window.innerHeight);
+    });
 
     function init(SCREEN_WIDTH: number, SCREEN_HEIGHT: number) {
         // Renderer
@@ -55,15 +81,14 @@
             23,
             SCREEN_WIDTH / SCREEN_HEIGHT,
             10,
-            3000,
+            5000,
         );
-        camera.position.set(0, 50, 1900);
+        camera.position.set(0, 100, 2800);
 
         // Scene
         scene = new THREE.Scene();
-        // scene.background = new THREE.Color(0x87ceeb); // Sky color (light blue)
         new THREE.TextureLoader().load("3d/sky.jpg", (texture) => {
-            texture.repeat.set(0.8, 1); // repeat the texture
+            texture.repeat.set(0.8, 1);
             scene.background = texture;
         });
 
@@ -88,30 +113,17 @@
         light.shadow.mapSize.height = 1024;
         scene.add(light);
 
-        // // CONTROLS, the scene will move with the mouse
-
-        // controls = new FirstPersonControls(camera, renderer.domElement);
-
-        // controls.lookSpeed = 0.0125;
-        // controls.movementSpeed = 500;
-        // controls.lookVertical = true;
-        // controls.lookAt(scene.position);
-
-        // GROUND (Grass)
-        // addGround(scene, FLOOR, "3d/Grass-Texture.jpg");
+        // Ground
         addGround(scene, FLOOR, "3d/grasslight-big.jpg");
 
-        // Add text and bars
+        // Title + Stacked Bars
         const fontLoader = new FontLoader();
         fontLoader.load("3d/helvetiker_bold.typeface.json", (font: Font) => {
+            // Title
             const textGeo = new TextGeometry("summer movies", {
                 font: font,
-                size: 40,
-                depth: 15,
-                // curveSegments: 2,
-                // bevelThickness: 2,
-                // bevelSize: 1,
-                // bevelEnabled: true,
+                size: 30,
+                depth: 10,
             });
             textGeo.computeBoundingBox();
             const centerOffset =
@@ -126,31 +138,31 @@
             titleMesh.castShadow = true;
             scene.add(titleMesh);
 
-            createBars(scene, font, dummyData);
+            createBars(scene, font);
+            createLegend(scene, font);
         });
 
-        // Load Models
-        const models = [
+        // === TODO-2: Load Extra Expressive 3D Objects ===
+        // The models below (Flamingo, Parrot, Horse) are loaded from GLB files.
+        // TODO: Replace them with your own 3D models!
+        //
+        // Where to find free GLB models:
+        //   - https://poly.pizza (search, download as .glb)
+        //   - https://sketchfab.com (filter by "Downloadable" + "glTF")
+        //   - https://kenney.nl/assets (game-style assets, some 3D)
+        //   - https://www.fab.com/search?q=3d+object&asset_formats=glb&asset_formats=converted-files&is_free=1
+        //
+        // Tips:
+        //   - Place your .glb files in the /static/3d/ folder
+        //   - Adjust the `scale` value if your model is too big or small
+        //   - If a model has no animations, remove the `duration` property
+        //     and guard the animation code: if (gltf.animations.length > 0) { ... }
+        //   - Feel free to add extra static models as decoration (trees, buildings, etc.)!
+
+        // Load bird models (linear motion)
+        const birdModels = [
             {
-                path: "3d/Horse.glb",
-                speed: 300,
-                duration: 1,
-                x: 100 - Math.random() * 1000,
-                y: FLOOR,
-                z: 300,
-                scale: 0.5,
-            },
-            {
-                path: "3d/Horse.glb",
-                speed: 300,
-                duration: 1,
-                x: 100 - Math.random() * 1000,
-                y: FLOOR,
-                z: 450,
-                scale: 0.5,
-            },
-            {
-                path: "3d/Flamingo.glb",
+                path: "3d/Flamingo.glb", // TODO: replace with your model
                 speed: 350,
                 duration: 1,
                 x: 300 - Math.random() * 500,
@@ -159,16 +171,16 @@
                 scale: 0.5,
             },
             {
-                path: "3d/Flamingo.glb",
+                path: "3d/Flamingo.glb", // TODO: replace with your model
                 speed: 350,
                 duration: 1,
                 x: 300 - Math.random() * 500,
                 y: FLOOR + 550,
-                z: 200,
+                z: -100,
                 scale: 0.5,
             },
             {
-                path: "3d/Parrot.glb",
+                path: "3d/Parrot.glb", // TODO: replace with your model
                 speed: 350,
                 duration: 0.5,
                 x: 500 - Math.random() * 500,
@@ -177,7 +189,41 @@
                 scale: 0.5,
             },
         ];
-        mixer = loadModels(models, scene, mixer, morphs);
+        mixer = loadModels(birdModels, scene, mixer, morphs);
+
+        // Load horse models (orbit around data)
+        horseMixer = new THREE.AnimationMixer(scene);
+        const gltfLoader = new GLTFLoader();
+        const horseConfigs = [
+            { startAngle: 0, orbitSpeed: 0.4 },
+            { startAngle: Math.PI, orbitSpeed: 0.4 },
+        ];
+        horseConfigs.forEach((config) => {
+            gltfLoader.load("3d/Horse.glb", (gltf) => { // TODO: replace with your model
+                const mesh = gltf.scene.children[0].clone() as THREE.Mesh;
+                (mesh as any).material = (mesh as any).material.clone();
+                mesh.scale.set(0.5, 0.5, 0.5);
+                mesh.castShadow = true;
+
+                horseMixer
+                    .clipAction(gltf.animations[0], mesh)
+                    .setDuration(1)
+                    .startAt(-Math.random())
+                    .play();
+
+                mesh.userData.angle = config.startAngle;
+                mesh.userData.orbitSpeed = config.orbitSpeed;
+                mesh.position.set(
+                    ORBIT_RX * Math.cos(config.startAngle),
+                    FLOOR,
+                    ORBIT_RZ * Math.sin(config.startAngle),
+                );
+
+                scene.add(mesh);
+                horseMorphs.push(mesh);
+            });
+        });
+        // === END TODO-2 ===
 
         // Handle resize
         window.addEventListener("resize", () =>
@@ -192,116 +238,176 @@
         renderer.setAnimationLoop(animate);
     }
 
-    function createBars(scene: THREE.Scene, font: Font, dummyData: TDummyData) {
-        const maxHeight = 400; // Maximum height of the bars
-        const barMaxWidth = 400; // Maximum width of all bars
+    // === TODO-3: Stacked Bars ===
+    // Currently createBars() renders one colored bar per genre per year.
+    //
+    // TODO-3a: Define a unique 3D shape per genre (e.g. createGenreGeometry / createGenreMaterial).
+    //   Docs: https://threejs.org/docs/#api/en/geometries
+    //   Docs: https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
+    //
+    // TODO-3b: Replace createBars() with createStackedBars().
+    //   Stack one 3D object per individual movie (e.g. Comedy=5 → 5 separate objects).
+    //   Example:
+    //     stackData.forEach((row) => {
+    //         let currentY = FLOOR;
+    //         genres.forEach((genre) => {
+    //             for (let i = 0; i < row[genre]; i++) {
+    //                 // create mesh with createGenreGeometry + createGenreMaterial
+    //                 // position at (xPos, currentY + unitSize / 2, 0)
+    //                 // currentY += unitSize
+    //             }
+    //         });
+    //     });
+    //
+    // TODO-3c: Update createLegend() to use genre shapes and materials.
+    function createBars(scene: THREE.Scene, font: Font) {
+        if (stackData.length === 0) return;
 
+        const barMaxWidth = Math.min(stackData.length * 80, 1400);
+
+        // D3 scales
         const xScale = d3
             .scaleBand()
-            .domain(Object.keys(dummyData))
+            .domain(stackData.map((d) => d.year))
             .range([-barMaxWidth / 2, barMaxWidth / 2])
             .padding(0.1);
 
-        const yScale = d3
-            .scaleLinear()
-            .domain([0, Math.max(...Object.values(dummyData).map((d) => d))])
-            .range([0, maxHeight]);
+        const bandwidth = xScale.bandwidth();
+        const barWidth = Math.min(bandwidth * 0.7, 25);
 
-        // Create bars for each genre
-        Object.keys(dummyData).forEach((genre, i) => {
-            const bar = createOneBar(
-                yScale(dummyData[genre]),
-                xScale.bandwidth(),
-            );
-            bar.position.set(
-                xScale(genre),
-                FLOOR + yScale(dummyData[genre]) / 2,
-                0,
-            );
-            scene.add(bar);
+        // One colored bar segment per genre, stacked per year
+        stackData.forEach((row) => {
+            const xPos = xScale(row.year)! + bandwidth / 2;
+            let currentY = FLOOR;
 
-            addLabelToBar(
-                scene,
-                `${genre}: ${dummyData[genre]}`,
-                xScale(genre)! - xScale.bandwidth() / 2,
-                FLOOR + 5,
-                bar.position.z + xScale.bandwidth(),
-                font,
-            );
+            genres.forEach((genre) => {
+                const count = row[genre as keyof TStackRow] as number;
+                const barHeight = count * 10;
+                if (barHeight === 0) return;
+
+                const geometry = new THREE.BoxGeometry(barWidth, barHeight, barWidth);
+                const material = new THREE.MeshPhysicalMaterial({ color: genreColors[genre] });
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.set(xPos, currentY + barHeight / 2, 0);
+                mesh.castShadow = true;
+                mesh.receiveShadow = true;
+                scene.add(mesh);
+                currentY += barHeight;
+            });
+        });
+
+        // Year labels
+        stackData.forEach((row) => {
+            const x = xScale(row.year)! + bandwidth / 2;
+            const textGeo = new TextGeometry(row.year, {
+                font: font,
+                size: 6,
+                depth: 2,
+            });
+            textGeo.computeBoundingBox();
+            const textWidth = textGeo.boundingBox!.max.x - textGeo.boundingBox!.min.x;
+            const textMat = new THREE.MeshPhysicalMaterial({ color: 0x000000 });
+            const textMesh = new THREE.Mesh(textGeo, textMat);
+            textMesh.position.set(x - textWidth / 2, FLOOR + 5, barWidth / 2 + 5);
+            textMesh.castShadow = true;
+            scene.add(textMesh);
         });
     }
+    // Legend — see TODO-3c
+    function createLegend(scene: THREE.Scene, font: Font) {
+        const legendX = 180;
+        const legendStartY = FLOOR + 420;
+        const spacing = 40;
+        const swatchSize = 15;
 
-    function createOneBar(height: number, width: number) {
-        // const geometry = new THREE.BoxGeometry(width, height, width);
+        genres.forEach((genre, i) => {
+            const y = legendStartY - i * spacing;
 
-        const geometry = new THREE.CylinderGeometry(
-            width / 2,
-            width / 2,
-            height,
-            32,
-        ); // cylinder
+            const swatchGeo = new THREE.BoxGeometry(swatchSize, swatchSize, swatchSize);
+            const swatchMat = new THREE.MeshPhysicalMaterial({ color: genreColors[genre] });
+            const swatch = new THREE.Mesh(swatchGeo, swatchMat);
+            swatch.position.set(legendX, y, 0);
+            swatch.castShadow = true;
+            scene.add(swatch);
 
-        // const material = new THREE.MeshPhongMaterial({ color: color }); // can be either custom color or texture
-        const material = new THREE.MeshStandardMaterial({
-            map: new THREE.TextureLoader().load("./3d/wood-texture.jpg"),
+            const textGeo = new TextGeometry(genre, {
+                font: font,
+                size: 10,
+                depth: 3,
+            });
+            const textMat = new THREE.MeshPhysicalMaterial({ color: 0x000000 });
+            const textMesh = new THREE.Mesh(textGeo, textMat);
+            textMesh.position.set(legendX + 18, y - 5, 0);
+            textMesh.castShadow = true;
+            scene.add(textMesh);
         });
-        const bar = new THREE.Mesh(geometry, material);
-        bar.castShadow = true;
-        bar.receiveShadow = true;
-        return bar;
-    }
-
-    function addLabelToBar(
-        scene: THREE.Scene,
-        text: string,
-        x: number,
-        y: number,
-        z: number,
-        font: Font,
-    ) {
-        const textGeometry = new TextGeometry(text, {
-            font: font,
-            size: 12,
-            depth: 4,
-        });
-
-        const textMaterial = new THREE.MeshPhysicalMaterial({
-            color: 0xffffff,
-        }); // Three.js provide a list of mesh materials, you can choose the one you like
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-        // Position the text above the bar
-        textMesh.position.set(x, y, z);
-        textMesh.castShadow = true;
-        textMesh.receiveShadow = false; // Text will not receive shadow to make it more readable
-
-        scene.add(textMesh);
     }
 
     function animate() {
-        // this function will be called every frame
         const delta = clock.getDelta();
-        mixer.update(delta);
 
-        // You can comment out the following lines if you don't want the morphs to move, which will also save some computation
-        morphs.forEach((morph) => {
-            morph.position.x += morph.speed * delta;
-            // Reset position if it goes off screen
-            if (morph.position.x > window.innerWidth / 2) {
-                morph.position.x = -window.innerWidth / 2 - Math.random() * 200;
-            }
-        });
+        if (animating) {
+            mixer.update(delta);
+            horseMixer.update(delta);
+
+            // TODO: Customize the animation behavior for your own models.
+            // Birds - linear motion
+            morphs.forEach((morph) => {
+                morph.position.x += morph.speed * delta;
+                if (morph.position.x > window.innerWidth / 2) {
+                    morph.position.x = -window.innerWidth / 2 - Math.random() * 200;
+                }
+            });
+
+            // TODO: Customize the animation for your own models.
+            // Horses - orbit around the data
+            horseMorphs.forEach((horse) => {
+                horse.userData.angle += horse.userData.orbitSpeed * delta;
+                const angle = horse.userData.angle;
+                horse.position.x = ORBIT_RX * Math.cos(angle);
+                horse.position.z = ORBIT_RZ * Math.sin(angle);
+
+                // Face the direction of travel
+                const lookAngle = angle + 0.1;
+                horse.lookAt(
+                    ORBIT_RX * Math.cos(lookAngle),
+                    horse.position.y,
+                    ORBIT_RZ * Math.sin(lookAngle),
+                );
+            });
+        }
 
         renderer.render(scene, camera);
-        // controls.update(delta);
     }
 </script>
 
 <div bind:this={container} class="container"></div>
 
+<button class="toggle-btn" onclick={() => animating = !animating}>
+    {animating ? "Pause" : "Play"} Animation
+</button>
+
 <style>
     div.container {
         width: 100%;
         height: 100%;
+    }
+
+    .toggle-btn {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 10px;
+        font-size: 12px;
+        border: none;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.30);
+        color: white;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .toggle-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
     }
 </style>
