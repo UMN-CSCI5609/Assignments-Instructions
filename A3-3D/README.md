@@ -27,7 +27,7 @@ The current 3D scene uses hardcoded dummy data. Replace it with real data from t
 Replace the default 3D models with your own to make the scene more expressive, engaging and fun!
 
 - Look for `TODO-2` in the code
-- Find free `.glb` models online (e.g., [poly.pizza](https://poly.pizza), [Fab](https://www.fab.com/search?q=3d+object&asset_formats=glb&asset_formats=converted-files&is_free=1)), [Sketchfab](https://sketchfab.com), [Kenney](https://kenney.nl/assets).
+- Find free `.glb` models online (e.g., [poly.pizza](https://poly.pizza), [Fab](https://www.fab.com/search?q=3d+object&asset_formats=glb&asset_formats=converted-files&is_free=1), [Sketchfab](https://sketchfab.com), [Kenney](https://kenney.nl/assets)).
 - Place your models in the `/static/3d/` folder and update the file paths in the code
 - Adjust `scale`, `position`, and animation settings as needed
 - If a model has no animations, guard the animation code accordingly
