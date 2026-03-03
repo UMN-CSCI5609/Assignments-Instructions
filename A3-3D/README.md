@@ -27,7 +27,7 @@ The current 3D scene uses hardcoded dummy data. Replace it with real data from t
 Replace the default 3D models with your own to make the scene more expressive, engaging and fun!
 
 - Look for `TODO-2` in the code
-- Find free `.glb` models online (e.g., [poly.pizza](https://poly.pizza), [Sketchfab](https://sketchfab.com), [Kenney](https://kenney.nl/assets), [Fab](https://www.fab.com))
+- Find free `.glb` models online (e.g., [poly.pizza](https://poly.pizza), [Fab](https://www.fab.com/search?q=3d+object&asset_formats=glb&asset_formats=converted-files&is_free=1)), [Sketchfab](https://sketchfab.com), [Kenney](https://kenney.nl/assets).
 - Place your models in the `/static/3d/` folder and update the file paths in the code
 - Adjust `scale`, `position`, and animation settings as needed
 - If a model has no animations, guard the animation code accordingly
@@ -65,7 +65,7 @@ Submit a PDF file in Canvas with the following:
 | Task | Full Points | Partial Credit | Minimal Attempt | No Marks |
 |------|------------|----------------|-----------------|----------|
 | **0. Download and Run** | **1 pt** — 3D scene loads and renders without errors. | | **0.5 pts** — Scene loads but has minor errors or warnings. | **0 pts** — Scene does not load or has major errors. |
-| **1. Replace Dummy Data** | **1 pt** — Data loads correctly and is aggregated by year and genre. | **0.5 pts** — Data loads but aggregation has minor issues (e.g., missing years or incorrect counts). | **0.25 pts** — Data loading is attempted but does not work correctly. | **0 pts** — Dummy data is unchanged or data fails to load. |
+| **1. Replace Dummy Data** | **1 pt** — Data loads correctly and is aggregated by year and genre. | **0.7 pts** — Data loads but aggregation has minor issues (e.g., missing years or incorrect counts). | **0.5 pts** — Data loading is attempted but does not work correctly. | **0 pts** — Dummy data is unchanged or data fails to load. |
 | **2. Add Expressive 3D Objects** | **3 pts** — At least 1 extra 3D object is added; model is properly scaled, positioned, and fits the scene. | **2 pts** — An object is added but has visual issues (e.g., wrong scale, positioning, or rendering problems). | **1 pt** — An attempt is made but the object does not render or is not visible. | **0 pts** — No extra 3D objects are added. |
 | **3. Unit Visualization with Unique Shapes** | **3 pts** — Unit visualization is fully implemented (one object per movie); genres are visually distinguishable from each other. | **2 pts** — Unit visualization partially works, or genres are not visually distinct. | **1 pt** — An attempt is made but unit stacking is broken or incomplete. | **0 pts** — No changes to the bar visualization. |
 | **4. Reflect on Pros and Cons** | **2 pts** — Clearly discusses pros, cons, and proposes a thoughtful solution for one con. | **1 pt** — Reflection is incomplete (e.g., missing pros, cons, or proposed solution) or lacks insights. | **0.5 pts** — Only a brief or superficial comment is provided. | **0 pts** — No reflection provided. |
