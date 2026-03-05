@@ -31,7 +31,7 @@ Make the scene more expressive, engaging and fun by changing or adding at least 
 - Place your models in the `/static/3d/` folder and update the file paths in the code
 - Adjust `scale`, `position`, and animation settings as needed
 - If a model has no built-in animations, add a simple custom animation (e.g., rotating or floating)
-- If a model has no animations, guard the animation code accordingly
+- If a model has no animations, set up the animation code accordingly
 
 ### 3. Change Bars to Unit Visualization with Unique Shapes (3 points)
 

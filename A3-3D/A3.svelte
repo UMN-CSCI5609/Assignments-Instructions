@@ -142,9 +142,11 @@
             createLegend(scene, font);
         });
 
-        // === TODO-2: Load Extra Expressive 3D Objects ===
-        // The models below (Flamingo, Parrot, Horse) are loaded from GLB files.
-        // TODO: Replace them with your own 3D models!
+        // === TODO-2: Add Expressive 3D Objects ===
+        // Make the scene more expressive, engaging and fun by changing or adding
+        // at least one 3D object! You do NOT need to replace all existing objects —
+        // modifying or adding just one is sufficient.
+        // Animation is required (e.g., rotation, bobbing, or using a model's built-in animation clips).
         //
         // Where to find free GLB models:
         //   - https://poly.pizza (search, download as .glb)
@@ -155,8 +157,10 @@
         // Tips:
         //   - Place your .glb files in the /static/3d/ folder
         //   - Adjust the `scale` value if your model is too big or small
-        //   - If a model has no animations, remove the `duration` property
-        //     and guard the animation code: if (gltf.animations.length > 0) { ... }
+        //   - If a model has no built-in animations, add a custom one
+        //     (e.g., rotate or float the mesh in the animate() function)
+        //   - If a model has no animations, guard the animation code:
+        //     if (gltf.animations.length > 0) { ... }
         //   - Feel free to add extra static models as decoration (trees, buildings, etc.)!
 
         // Load bird models (linear motion)
