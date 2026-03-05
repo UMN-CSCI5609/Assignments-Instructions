@@ -239,28 +239,66 @@
     }
 
     // === TODO-3: Unit Visualization ===
-    // Currently createBars() renders one colored bar per genre per year.
     //
-    // TODO-3a: Define a unique 3D shape per genre (e.g. createGenreGeometry / createGenreMaterial).
+    // TODO-3a: Define a unique 3D shape and material per genre.
     //   Docs: https://threejs.org/docs/#api/en/geometries
     //   Docs: https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
+    
+    // function createGenreGeometry(genre: string): THREE.BufferGeometry {
+    //     // TODO: Return a different geometry for each genre,
+    //   see the documentation: https://threejs.org/docs/#api/en/geometries
+    //     //   Comedy :
+    //     //   Romance :
+    //     //   Drama   :
+    // }
     //
-    // TODO-3b: Replace createBars() with a unit visualization.
-    //   Instead of one tall bar per genre, represent each individual movie as its own 3D object,
-    //   stacked vertically (e.g. Comedy=5 → 5 separate objects).
-    //   Example:
+    // function createGenreMaterial(genre: string): THREE.Material {
+    //     // TODO: Return a material using genreColors[genre], 
+    //   see the documentation: https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial
+    // }
+
+    // TODO-3b: Implement createUnits(), then call it instead of createBars()
+    //   Change line 141:  createBars(scene, font);
+    //   To:               createUnits(scene, font);
+    //
+    // function createUnits(scene: THREE.Scene, font: Font) {
+    //     if (stackData.length === 0) return;
+    //
+    //     const barMaxWidth = Math.min(stackData.length * 80, 1400);
+    //     const unitSize = 10; // height of each unit object
+    //
+    //     const xScale = d3
+    //         .scaleBand()
+    //         .domain(stackData.map((d) => d.year))
+    //         .range([-barMaxWidth / 2, barMaxWidth / 2])
+    //         .padding(0.1);
+    //
+    //     const bandwidth = xScale.bandwidth();
+    //
+    //     // Stack unit objects per year
     //     stackData.forEach((row) => {
+    //         const xPos = xScale(row.year)! + bandwidth / 2;
     //         let currentY = FLOOR;
+    //
     //         genres.forEach((genre) => {
-    //             for (let i = 0; i < row[genre]; i++) {
-    //                 // create mesh with createGenreGeometry + createGenreMaterial
-    //                 // position at (xPos, currentY + unitSize / 2, 0)
-    //                 // currentY += unitSize
+    //             const count = row[genre as keyof TStackRow] as number;
+    //             for (let i = 0; i < count; i++) {
+    //                 const geo = // TODO: use createGenreGeometry(genre)
+    //                 const mat = // TODO: use createGenreMaterial(genre)
+    //                 const mesh = new THREE.Mesh(geo, mat);
+    //                 // TODO: set mesh position at (xPos, currentY + unitSize / 2, 0)
+    //                 // TODO: enable castShadow and receiveShadow
+    //                 // TODO: add mesh to scene
+    //                 // TODO: advance currentY by unitSize
     //             }
     //         });
     //     });
     //
+    //     // Year labels — you can reuse the year label code from createBars() below
+    // }
+    //
     // TODO-3c: Update createLegend() to use genre shapes and materials.
+
     function createBars(scene: THREE.Scene, font: Font) {
         if (stackData.length === 0) return;
 
@@ -314,7 +352,7 @@
             scene.add(textMesh);
         });
     }
-    // Legend — see TODO-3c
+    // Update your new Legend code here — see TODO-3c
     function createLegend(scene: THREE.Scene, font: Font) {
         const legendX = 180;
         const legendStartY = FLOOR + 420;
