@@ -5,6 +5,14 @@
 > [!NOTE]
 > All assignments can be hosted in a **single repository**, each accessible through a different route. You will not need to create multiple repositories for assignments.
 
+## BEFORE YOU BEGIN
+- We would like to collect AI usage data from students within this course in order to conduct research. As such, we need every student to fill out a form indicating whether they consent or opt out of allowing said data pertaining to this course to be used for research.
+- The form will be sent out in a separate announcement/message.
+- We would like to request student consent in whether we may use your data for later research purposes, with all identifiers removed (as in we won't know who the data belongs to).
+- This does not at all affect your access to the API keys, nor will any course instructors have access to your responses.
+- **You must fill out the form, as it will be graded on completion.** However, whatever your response is will not affect your grade.
+- Anytime you choose, you can withdraw from the study.
+
 ## 0. Preparation
 - Ensure you have a code IDE like [VSCode](https://code.visualstudio.com/download) installed. While you are welcome to use any IDE of your choice, this course will assume the use of VSCode for demonstrations.
 - [Install npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) on your machine.
@@ -96,7 +104,7 @@ In your terminal, find a location you like to save the project, and run `npx sv 
 ## 4. Submission
 Please submit the URLs of a) your public github page and b) private github repo in Canvas.
 
-Ensure that you have added the [TA](https://github.com/ppphhhleo) to your private github repo so that we can access your source code, though most of the time, the grading does not depends on the source code.
+Ensure that you have added the [TA](https://github.com/mkrstulovic) to your private github repo so that we can access your source code, though most of the time, the grading does not depends on the source code.
 You will work on the same repo for the remainder of the semester.
 
 **Grading:**
