@@ -22,15 +22,13 @@ As usually, we have created some template code for you to start working with.
   - 3. Add brush interaction to the line chart, which will update the scatter plot (1 pt)
   - 4. Dynamically bind data attributes to the x, y, and size channels of the scatter plot using a dropdown selection (1 pt)
 
-### 2.Reflect the design of the dashboard (3 points):
+### 2.Reflect on the design of the dashboard (2 points):
 
 Answer the following questions in your PDF report:
 - Why do we use opacity = 0.5 for points in the scatter plot? What would happen if the default transparency of all points were set to 1?
 - In the current implementation, all attributes can be bound with the three visual channels, leading to inappropriate encodings (e.g., using the x-axis for the title of 895 movies). Which attribute should be removed from the dropdown list for each channel?
-- I use curves for the year distribution to showcase how to implement the path generator. But is using curve the best choice here? Anything wrong with using the basic curve?
 
-
-### 3. Conduct Exploratory Datate Analysis (EDA) (4 points)
+### 3. Conduct Exploratory Data Analysis (EDA) (2 points)
 Using the implemented multi-view visualization, we will conduct an exploratory analysis to explore *"Which factors influence the ratings of summer movies?"*
 
 - First, please list three potential factors that might influence the rating of summer movies based on your prior knowledge or intuition. 
@@ -38,8 +36,17 @@ Using the implemented multi-view visualization, we will conduct an exploratory a
 - At least one of your proposed factors should influence/correlate with the movie rating. If all the three factors do no influence the rating, please consider new ones.
 - You can either use only the visualizations from step 1 or implement your own additional visualizations for the analysis.
 
-### 4. Submission
+### 4. Conduct Further Analysis (3 points)
+You've just conducted a guided version of EDA. The goal of EDA is to get a sense of patterns and relationships with the data. To further this understanding, we will conduct a new EDA.
+
+- To begin, come up with and document a new question (different from that of Part 3) that can be answered using the dataset. Think about what questions you might find interesting and would want to explore more. Make sure it's a question best answered using a multi-view visualization and the interactions between them.
+- Implement a new multi-view visualization that is different from the one you've have created already. You should think about using different visualizations, different variables, or unique interactions.
+- Again, make sure that the data you're considering can influence/correlate with what is being observed in your question.
+- You should implement some level of unique visualization so that it differs from the visualizations you've made in Part 3, either in what's visualized or the interactions present.
+
+### 5. Submission
 Please submit your work as a single PDF on Canvas with the following:
 - As usually, the URLs to your demo and your github repo.
-- Anwser the three questions in the reflection section
-- Document down your EDA: list the three factors you considered, provide screenshots of the visual analytics for each factor, and provide a paragraph for each factor to explain the analysis and your conclusion.
+- Anwser the two questions in the reflection section
+- Document down your guided EDA: list the three factors you considered, provide screenshots of the visual analytics for each factor, and provide a paragraph for each factor to explain the analysis and your conclusion.
+- Document your self-led EDA: list the factors you considered, provide screenshots of your analysis, and explain your analysis and conclusions of each factor.
